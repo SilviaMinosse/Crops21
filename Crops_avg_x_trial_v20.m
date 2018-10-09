@@ -2,11 +2,12 @@
 %diversi per un subj potendo o no distinguere tra destra e sinistra e ti
 %predispone le matrici per il plot degli andamenti cinematici e cinetici della curva media
 % import patient
+
 clear all
 global Angles Kinetic AvgData
 Oldpath = pwd;
 addpath(Oldpath) %Susanna
-%mi vedi?
+
 Moment_100 = ones(100,3,6).*nan;
 Power_100 = ones(100,3,6).*nan;
 TotPower_100 = ones(100,3,1).*nan;
@@ -330,8 +331,7 @@ for subj = 1:nsubj
         if isempty(kin);kin='1';end
         if strcmp(kin,'1')
             [  Moment_100,Power_100,TotPower_100, output_kinetic ] = kinetic( c3d);
-            Moments_100(:,:,:,j)=Moment_100.*10e-3;Powers_100(:,:,:,j)=Power_100;TotPowers_100(:,:,j)=TotPower_100;
-            TotPower_100 =[];
+ Moments_100(:,:,:,j)=Moment_100.*1e-3;Powers_100(:,:,:,j)=Power_100;TotPowers_100(:,:,j)=TotPower_100; % Moment metri = mm/1000 % Silvia            TotPower_100 =[];
             for fn = fieldnames(output_kinetic)'
                 for fnn = fieldnames(output_kinetic.(fn{1}))'
                     eval([(fn{1}) '.' (fnn{1}) '(' num2str(j) ',:)= output_kinetic.' (fn{1}) '.' (fnn{1}) ';']);
